@@ -1,4 +1,4 @@
-1. Schools in flood zones (in risk of flood)
+--1. Schools in flood zones (in risk of flood)
 
 select a.sch_name,a.postcode, a.geom as schools_locations,
 b.geom as floodwarnings_locations,
@@ -9,7 +9,7 @@ on st_intersects(a.geom,b.geom)
 where a.postcode like 'CF%'
 order by a.sch_name;
 
-2. Proximity of care homes to closest pharmacies and hospitals
+--2. Proximity of care homes to closest pharmacies and hospitals
 
 select a.name as carehomes_names, a.geom as carehomes_locations,
 floor(st_distance(a.geom,b.geom)) as nearest_pharmacies_in_500m, 
@@ -23,7 +23,7 @@ join cw1920.hospitals as c
 on st_dwithin(a.geom,c.geom,500)
 order by carehomes_names;
 
-3. Burglary crime rate of in cities
+--3. Burglary crime rate of in cities
 
 select a.city_name as cities, floor(st_area(a.geom)/1000000) as Km2, count(b.crimetype) as burglaries
 from cw1920.major_towns as a
