@@ -23,7 +23,7 @@ join cw1920.hospitals as c
 on st_dwithin(a.geom,c.geom,500)
 order by carehomes_names;
 
---3. Burglary crime rate of in cities
+--3. Burglary crime rate in cities
 
 select a.city_name as cities, floor(st_area(a.geom)/1000000) as Km2, count(b.crimetype) as burglaries
 from cw1920.major_towns as a
